@@ -34,8 +34,28 @@ var answersArr = [question1, question2, question3, question4, question5, questio
 
 //functions to start game 
 //document.querySelector("button")
-//button.eventListener("click", gameStart) ?
+var nextQuestion = document.querySelector("questionButton");
+var timerEl = document.getElementById('countdown');
 //start timer in intervals of 1000ms
+function countDown() {
+  var timeLeft = 60;
+  var timeInterval = setInterval(function () {
+    if (timeLeft > 1) {
+      timerEl.textContent = timeLeft + " seconds remaining";
+      timeLeft--;
+    } else if (timeLeft === 1) {
+      timerEl.textContent = timeLeft = " second remaining";
+      timeLeft--;
+    } else {
+      timerEl.textContent = "out of time";
+      clearInterval(timeInterval);
+   }
+ }, 1000);
+}
+countDown();
+//button.eventListener("click", gameStart) ?
+
+
 //display timer count down on screen
 //display first question and corresponding answers(array of objects for questions/objects have attributes of answer and fake answers)(keep track of array and display next index up)
 //event listener on buttons check answers
