@@ -1,59 +1,104 @@
 // objects
-var question1 = {
-  correct: "A",
-  false: ["B", "C", "D"]
-};
+var questionsArr =[ {
+  question: "What is answer to question 1? (A)",
+  answers: [
+    { text: 'A', correct: true},
+    { text: 'B', correct: false},
+    { text: 'C', correct: false},
+    { text: 'D', correct: false},
+  ]
+},
+{
+question: "What is answer to question 2? (A)",
+  answers: [
+    { text: 'A', correct: true},
+    { text: 'B', correct: false},
+    { text: 'C', correct: false},
+    { text: 'D', correct: false},
+  ]
+},
+{
+question: "What is answer to question 3? (A)",
+  answers: [
+    { text: 'A', correct: true},
+    { text: 'B', correct: false},
+    { text: 'C', correct: false},
+    { text: 'D', correct: false},
+  ]
+},
+{
+question: "What is answer to question 4? (A)",
+  answers: [
+    { text: 'A', correct: true},
+    { text: 'B', correct: false},
+    { text: 'C', correct: false},
+    { text: 'D', correct: false},
+  ]
+},
+{
+  question: "What is answer to question 5? (A)",
+  answers: [
+    { text: 'A', correct: true},
+    { text: 'B', correct: false},
+    { text: 'C', correct: false},
+    { text: 'D', correct: false},
+  ]
+},
+{
+question: "What is answer to question 6? (A)",
+  answers: [
+    { text: 'A', correct: true},
+    { text: 'B', correct: false},
+    { text: 'C', correct: false},
+    { text: 'D', correct: false},
+  ]
+},
 
-var question2 = {
-  correct: "A",
-  false: ["B", "C", "D"]
-};
-
-var question3 = {
-  correct: "A",
-  false: ["B", "C", "D"]
-};
-
-var question4 = {
-  correct: "A",
-  false: ["B", "C", "D"]
-};
-
-var question5 = {
-  correct: "A",
-  false: ["B", "C", "D"]
-};
-
-var question6 = {
-  correct: "A",
-  false: ["B", "C", "D"]
-};
+]
 //Define global variables (not high scores)/ query selectors
-const answersArr = [question1, question2, question3, question4, question5, question6]
-var currentQuestionIndex = 0
+var answerOptionsIndex = 0;
+var currentQuestionIndex = 0;
 var timerEl = document.getElementById("countdown");
-const startButton = document.getElementById("start-btn");
-const questionContainerElement = document.getElementById("question-container")
-const currentQuestion = document.getElementById("question")
+var startButton = document.getElementById("start-btn");
+var questionContainerElement = document.getElementById("question-container");
+var questionElement = document.getElementById("question");
+var answerButtonsElement = document.getElementById("answer-btns");
+var answerButtons = document.getElementById("btn")
+
 //functions to start game 
+
+
 startButton.addEventListener("click", startGame)
 
 function startGame() {
 console.log('started')
 startButton.classList.add("hide")
 questionContainerElement.classList.remove("hide")
-setNextQuestion();
 countDown();
+setNextQuestion();
 }
 
 
 function setNextQuestion() {
-showQuestion()
-  
+var currentQuestionIndex = 0;
+currentQuestionIndex++
+answerOptionsIndex++
+showQuestion();
 }
 
 function showQuestion() {
-currentQuestion
+  var currentQuestion = questionsArr[currentQuestionIndex];
+ if (currentQuestion) {
+  questionElement.textContent = currentQuestion.question;
+ } else {
+  questionElement.textContent = "Quiz Over";
+ }
+
+ for(i = 0; i < currentQuestion.answers.length; i++){
+  var currentAnswer= currentQuestion.answers[i];
+  answerButtonsElement.children[i].textContent = currentAnswer.text;
+ }
+  
 }
 
 
