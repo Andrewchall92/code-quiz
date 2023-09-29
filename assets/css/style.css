@@ -54,7 +54,7 @@ h1 {
     
 }
 
-.start-btn-btn {
-    font-size: 30px;
-    padding: 5px;
+
+.hide {
+    display: none;
 }

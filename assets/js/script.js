@@ -1,47 +1,70 @@
 // objects
 var question1 = {
-  realAnswer: "A",
-  fakeAnswer: ["B", "C", "D"]
+  correct: "A",
+  false: ["B", "C", "D"]
 };
 
 var question2 = {
-  realAnswer: "A",
-  fakeAnswer: ["B", "C", "D"]
+  correct: "A",
+  false: ["B", "C", "D"]
 };
 
 var question3 = {
-  realAnswer: "A",
-  fakeAnswer: ["B", "C", "D"]
+  correct: "A",
+  false: ["B", "C", "D"]
 };
 
 var question4 = {
-  realAnswer: "A",
-  fakeAnswer: ["B", "C", "D"]
+  correct: "A",
+  false: ["B", "C", "D"]
 };
 
 var question5 = {
-  realAnswer: "A",
-  fakeAnswer: ["B", "C", "D"]
+  correct: "A",
+  false: ["B", "C", "D"]
 };
 
 var question6 = {
-  realAnswer: "A",
-  fakeAnswer: ["B", "C", "D"]
+  correct: "A",
+  false: ["B", "C", "D"]
 };
 //Define global variables (not high scores)/ query selectors
-var answersArr = [question1, question2, question3, question4, question5, question6]
-var currentQuestion = 0
-var startQuiz = document.querySelector("start-btn");
+const answersArr = [question1, question2, question3, question4, question5, question6]
+var currentQuestionIndex = 0
 var timerEl = document.getElementById("countdown");
-
+const startButton = document.getElementById("start-btn");
+const questionContainerElement = document.getElementById("question-container")
+const currentQuestion = document.getElementById("question")
 //functions to start game 
-startQuiz.addEventListener("click", function(e) {
+startButton.addEventListener("click", startGame)
 
- })
+function startGame() {
+console.log('started')
+startButton.classList.add("hide")
+questionContainerElement.classList.remove("hide")
+setNextQuestion();
+countDown();
+}
 
-for (i=0; i<answersArr.length; i++ ) {
+
+function setNextQuestion() {
+showQuestion()
+  
+}
+
+function showQuestion() {
+currentQuestion
+}
+
+
+function selectAnswer() {
 
 }
+
+function checkAnswer() {
+
+}
+
 
 //timer count down
 function countDown() {
@@ -83,3 +106,6 @@ function countDown() {
 //clear timer
 //functions gets called when game ends(possible called by next function?)
 
+// for (i=0; i<answersArr.length; i++ ) {
+
+// }
