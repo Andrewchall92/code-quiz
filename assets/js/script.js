@@ -28,15 +28,24 @@ var question6 = {
   realAnswer: "A",
   fakeAnswer: ["B", "C", "D"]
 };
-
-//Define global variables (not high scores)
+//Define global variables (not high scores)/ query selectors
 var answersArr = [question1, question2, question3, question4, question5, question6]
+var currentQuestion = 0
+var startQuiz = document.querySelector("startQuizButton");
+var timerEl = document.getElementById("countdown");
 
 //functions to start game 
 //document.querySelector("button")
-var nextQuestion = document.querySelector("questionButton");
-var timerEl = document.getElementById('countdown');
-//start timer in intervals of 1000ms
+ 
+startQuiz.addEventListener("click", function(e) {
+
+ })
+
+for (i=0; i<answersArr.length; i++ ) {
+
+}
+
+//timer count down
 function countDown() {
   var timeLeft = 60;
   var timeInterval = setInterval(function () {
@@ -52,7 +61,13 @@ function countDown() {
    }
  }, 1000);
 }
-countDown();
+
+
+
+
+
+
+
 //button.eventListener("click", gameStart) ?
 
 
