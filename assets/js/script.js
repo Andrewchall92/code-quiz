@@ -31,12 +31,10 @@ var question6 = {
 //Define global variables (not high scores)/ query selectors
 var answersArr = [question1, question2, question3, question4, question5, question6]
 var currentQuestion = 0
-var startQuiz = document.querySelector("startQuizButton");
+var startQuiz = document.querySelector("start-btn");
 var timerEl = document.getElementById("countdown");
 
 //functions to start game 
-//document.querySelector("button")
- 
 startQuiz.addEventListener("click", function(e) {
 
  })

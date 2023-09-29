@@ -4,28 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Document</title>
+    <title>Quiz App</title>
 </head>
 <body>
     <header>
-        <h1>Coding Quiz Challenge</h1>
-        <div>
-            <ul>
-                <li>Score</li>
-                <li id="countdown">Time</li>
-            </ul>
-        </div>
+        <ul>
+            <li>Score</li>
+            <li id="countdown">Time</li>
+        </ul>
     </header>
+    <main> 
+        <h1>Coding Quiz</h1>
         <div id="container">
             <div id="questionContainer" class="hide">
-                
-            
+            <div id="answser-btns" class ="btn-grid">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
+            </div>  
             <div class = "controls">
-                <button id="start-btn" class="start-btn btn">Start Quiz</button>  
+                <button id="start-btn" class="start-btn-btn">Start Quiz</button>  
             </div>
         </div>
-        <button id="startQuizButton">Start Quiz</button>
-
+    </main>
         <script src="./assets/js/script.js"></script>
 
 </body>
