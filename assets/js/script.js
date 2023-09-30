@@ -6,7 +6,8 @@ var questionsArr =[ {
     { text: 'B', correct: false},
     { text: 'C', correct: false},
     { text: 'D', correct: false},
-  ]
+  ],
+  correct: "A",
 },
 {
 question: "What is answer to question 2? (A)",
@@ -15,7 +16,8 @@ question: "What is answer to question 2? (A)",
     { text: 'B', correct: false},
     { text: 'C', correct: false},
     { text: 'D', correct: false},
-  ]
+  ],
+  correct: "A",
 },
 {
 question: "What is answer to question 3? (A)",
@@ -24,7 +26,8 @@ question: "What is answer to question 3? (A)",
     { text: 'B', correct: false},
     { text: 'C', correct: false},
     { text: 'D', correct: false},
-  ]
+  ],
+  correct: "A",
 },
 {
 question: "What is answer to question 4? (A)",
@@ -33,7 +36,8 @@ question: "What is answer to question 4? (A)",
     { text: 'B', correct: false},
     { text: 'C', correct: false},
     { text: 'D', correct: false},
-  ]
+  ],
+  correct: "A",
 },
 {
   question: "What is answer to question 5? (A)",
@@ -42,7 +46,8 @@ question: "What is answer to question 4? (A)",
     { text: 'B', correct: false},
     { text: 'C', correct: false},
     { text: 'D', correct: false},
-  ]
+  ],
+  correct: "A",
 },
 {
 question: "What is answer to question 6? (A)",
@@ -51,7 +56,8 @@ question: "What is answer to question 6? (A)",
     { text: 'B', correct: false},
     { text: 'C', correct: false},
     { text: 'D', correct: false},
-  ]
+  ],
+  correct: "A",
 },
 
 ]
@@ -75,12 +81,11 @@ console.log('started')
 startButton.classList.add("hide")
 questionContainerElement.classList.remove("hide")
 countDown();
-setNextQuestion();
+showQuestion();
 
 }
-
+var timeLeft = 60;
 function countDown() {
-  var timeLeft = 60;
   var timeInterval = setInterval(function () {
     if (timeLeft > 1) {
       timerEl.textContent = timeLeft + " seconds remaining";
@@ -89,46 +94,57 @@ function countDown() {
       timerEl.textContent = timeLeft = " second remaining";
       timeLeft--;
     } else {
-      timerEl.textContent = "out of time";
+      timerEl.textContent = "Game Over";
       clearInterval(timeInterval);
    }
  }, 1000);
 }
 
-function setNextQuestion() {
-var currentQuestionIndex = 0;
-currentQuestionIndex++
-answerOptionsIndex++
-showQuestion();
-}
+var currentQuestionIndex=0;
 
 
 function showQuestion() {
-  var currentQuestion = questionsArr[currentQuestionIndex];
- if (currentQuestion) {
-  questionElement.textContent = currentQuestion.question;
- } else {
-  questionElement.textContent = "Quiz Over";
- }
-
- for(i = 0; i < currentQuestion.answers.length; i++){
-  var currentAnswer= currentQuestion.answers[i];
-  answerButtonsElement.children[i].textContent = currentAnswer.text;
- }
   
-}
+  if (currentQuestionIndex < questionsArr.length) {
+    var currentQuestion = questionsArr[currentQuestionIndex];
 
-answerButtons.addEventListener("click", selectAnswer);
+    questionElement.textContent = currentQuestion.question;
 
-function selectAnswer(currentAnswer) {
-  if (currentAnswer.correct === true) {
-     setNextQuestion();
+    for (i = 0; i < currentQuestion.answers.length; i++) {
+      var currentAnswer = currentQuestion.answers[i];
+      answerButtonsElement.children[i].textContent = currentAnswer.text;
+    }
+
   } else {
-    timeLeft -= 10;
-    setNextQuestion();
+    questionElement.textContent = "Quiz Over";
+    answerButtonsElement.style.display = "none";  
+    
   }
+
 }
 
+answerButtonsElement.addEventListener("click", function (e) {
+  console.log('clicked');
+  console.log(e.target.innerText);
+
+  if (e.target.innerText === questionsArr[currentQuestionIndex].correct) {
+    console.log('correct');
+    document.getElementById("correct").innerHTML = 'correct';
+  } else {
+    console.log('wrong');
+    document.getElementById("correct").innerHTML = 'wrong';
+    timeLeft -= 10;
+  }
+
+  setTimeout(function () {
+
+    document.getElementById("correct").innerHTML = ""
+    currentQuestionIndex++;
+    showQuestion();
+  }, 2000)
+
+
+});
 
 
 
