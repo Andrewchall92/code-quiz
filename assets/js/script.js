@@ -2,74 +2,72 @@
 var questionsArr =[ {
   question: "What is answer to question 1? (A)",
   answers: [
-    { text: 'A', correct: true},
-    { text: 'B', correct: false},
-    { text: 'C', correct: false},
-    { text: 'D', correct: false},
+    { text: 'A'}, 
+    { text: 'B'}, 
+    { text: 'C'}, 
+    { text: 'D'}, 
   ],
   correct: "A",
 },
 {
 question: "What is answer to question 2? (A)",
   answers: [
-    { text: 'A', correct: true},
-    { text: 'B', correct: false},
-    { text: 'C', correct: false},
-    { text: 'D', correct: false},
+    { text: 'A'}, 
+    { text: 'B'}, 
+    { text: 'C'}, 
+    { text: 'D'}, 
   ],
   correct: "A",
 },
 {
 question: "What is answer to question 3? (A)",
   answers: [
-    { text: 'A', correct: true},
-    { text: 'B', correct: false},
-    { text: 'C', correct: false},
-    { text: 'D', correct: false},
+    { text: 'A'}, 
+    { text: 'B'}, 
+    { text: 'C'}, 
+    { text: 'D'}, 
   ],
   correct: "A",
 },
 {
 question: "What is answer to question 4? (A)",
   answers: [
-    { text: 'A', correct: true},
-    { text: 'B', correct: false},
-    { text: 'C', correct: false},
-    { text: 'D', correct: false},
+    { text: 'A'}, 
+    { text: 'B'}, 
+    { text: 'C'}, 
+    { text: 'D'}, 
   ],
   correct: "A",
 },
 {
   question: "What is answer to question 5? (A)",
   answers: [
-    { text: 'A', correct: true},
-    { text: 'B', correct: false},
-    { text: 'C', correct: false},
-    { text: 'D', correct: false},
+    { text: 'A'}, 
+    { text: 'B'}, 
+    { text: 'C'}, 
+    { text: 'D'}, 
   ],
   correct: "A",
 },
 {
 question: "What is answer to question 6? (A)",
   answers: [
-    { text: 'A', correct: true},
-    { text: 'B', correct: false},
-    { text: 'C', correct: false},
-    { text: 'D', correct: false},
+    { text: 'A'}, 
+    { text: 'B'}, 
+    { text: 'C'}, 
+    { text: 'D'}, 
   ],
   correct: "A",
 },
 
 ]
 //Define global variables (not high scores)/ query selectors
-var answerOptionsIndex = 0;
 var currentQuestionIndex = 0;
 var timerEl = document.getElementById("countdown");
 var startButton = document.getElementById("start-btn");
 var questionContainerElement = document.getElementById("question-container");
 var questionElement = document.getElementById("question");
 var answerButtonsElement = document.getElementById("answer-btns");
-var answerButtons = document.querySelectorAll(".btn")
 
 //functions to start game 
 
@@ -96,6 +94,8 @@ function countDown() {
     } else {
       timerEl.textContent = "Game Over";
       clearInterval(timeInterval);
+      // startButton.classList.remove("hide")
+      // questionContainerElement.classList.add("hide")
    }
  }, 1000);
 }
@@ -117,7 +117,7 @@ function showQuestion() {
 
   } else {
     questionElement.textContent = "Quiz Over";
-    answerButtonsElement.style.display = "none";  
+    answerButtonsElement.classList.add('hide');  
     
   }
 
@@ -133,7 +133,7 @@ answerButtonsElement.addEventListener("click", function (e) {
   } else {
     console.log('wrong');
     document.getElementById("correct").innerHTML = 'wrong';
-    timeLeft -= 10;
+    timeLeft -= 20;
   }
 
   setTimeout(function () {
@@ -156,16 +156,6 @@ answerButtonsElement.addEventListener("click", function (e) {
 
 
 
-// function selectAnswer() {
-//   answerButtons.addEventListener("click", function() {
-//     if(currentAnswer.correct == true) {
-//       setNextQuestion();
-//     } else {
-//       timeLeft - 10;
-//       setNextQuestion();
-//     }
-//   })
-//   };
 
 
 
