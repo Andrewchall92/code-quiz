@@ -63,7 +63,7 @@ var startButton = document.getElementById("start-btn");
 var questionContainerElement = document.getElementById("question-container");
 var questionElement = document.getElementById("question");
 var answerButtonsElement = document.getElementById("answer-btns");
-var answerButtons = document.getElementById("btn")
+var answerButtons = document.querySelectorAll(".btn")
 
 //functions to start game 
 
@@ -76,42 +76,9 @@ startButton.classList.add("hide")
 questionContainerElement.classList.remove("hide")
 countDown();
 setNextQuestion();
-}
-
-
-function setNextQuestion() {
-var currentQuestionIndex = 0;
-currentQuestionIndex++
-answerOptionsIndex++
-showQuestion();
-}
-
-function showQuestion() {
-  var currentQuestion = questionsArr[currentQuestionIndex];
- if (currentQuestion) {
-  questionElement.textContent = currentQuestion.question;
- } else {
-  questionElement.textContent = "Quiz Over";
- }
-
- for(i = 0; i < currentQuestion.answers.length; i++){
-  var currentAnswer= currentQuestion.answers[i];
-  answerButtonsElement.children[i].textContent = currentAnswer.text;
- }
-  
-}
-
-
-function selectAnswer() {
 
 }
 
-function checkAnswer() {
-
-}
-
-
-//timer count down
 function countDown() {
   var timeLeft = 60;
   var timeInterval = setInterval(function () {
@@ -128,8 +95,61 @@ function countDown() {
  }, 1000);
 }
 
+function setNextQuestion() {
+var currentQuestionIndex = 0;
+currentQuestionIndex++
+answerOptionsIndex++
+showQuestion();
+}
 
 
+function showQuestion() {
+  var currentQuestion = questionsArr[currentQuestionIndex];
+ if (currentQuestion) {
+  questionElement.textContent = currentQuestion.question;
+ } else {
+  questionElement.textContent = "Quiz Over";
+ }
+
+ for(i = 0; i < currentQuestion.answers.length; i++){
+  var currentAnswer= currentQuestion.answers[i];
+  answerButtonsElement.children[i].textContent = currentAnswer.text;
+ }
+  
+}
+
+answerButtons.addEventListener("click", selectAnswer);
+
+function selectAnswer(currentAnswer) {
+  if (currentAnswer.correct === true) {
+     setNextQuestion();
+  } else {
+    timeLeft -= 10;
+    setNextQuestion();
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// function selectAnswer() {
+//   answerButtons.addEventListener("click", function() {
+//     if(currentAnswer.correct == true) {
+//       setNextQuestion();
+//     } else {
+//       timeLeft - 10;
+//       setNextQuestion();
+//     }
+//   })
+//   };
 
 
 
