@@ -89,13 +89,14 @@ function countDown() {
       timerEl.textContent = timeLeft + " seconds remaining";
       timeLeft--;
     } else if (timeLeft === 1) {
-      timerEl.textContent = timeLeft = " second remaining";
+      timerEl.textContent = timeLeft = "1 second remaining";
       timeLeft--;
     } else {
       timerEl.textContent = "Game Over";
       clearInterval(timeInterval);
-      // startButton.classList.remove("hide")
-      // questionContainerElement.classList.add("hide")
+      startButton.classList.remove("hide")
+      questionContainerElement.classList.add("hide")
+      // location.reload();
    }
  }, 1000);
 }
@@ -107,7 +108,6 @@ function showQuestion() {
   
   if (currentQuestionIndex < questionsArr.length) {
     var currentQuestion = questionsArr[currentQuestionIndex];
-
     questionElement.textContent = currentQuestion.question;
 
     for (i = 0; i < currentQuestion.answers.length; i++) {
@@ -117,7 +117,8 @@ function showQuestion() {
 
   } else {
     questionElement.textContent = "Quiz Over";
-    answerButtonsElement.classList.add('hide');  
+    answerButtonsElement.classList.add('hide'); 
+    document.getElementById("final").classList.remove('hide'); 
     
   }
 
@@ -133,7 +134,7 @@ answerButtonsElement.addEventListener("click", function (e) {
   } else {
     console.log('wrong');
     document.getElementById("correct").innerHTML = 'wrong';
-    timeLeft -= 20;
+    timeLeft -= 15;
   }
 
   setTimeout(function () {
@@ -146,6 +147,13 @@ answerButtonsElement.addEventListener("click", function (e) {
 
 });
 
+document.getElementById("initial-btn").onclick = function (e) {
+  e.preventDefault();
+  var initials = document.getElementById("initials").value;
+  localStorage.setItem("initials", initials);
+  localStorage.setItem("score", timeLeft);
+  
+  }
 
 
 
