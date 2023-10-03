@@ -82,21 +82,32 @@ countDown();
 showQuestion();
 
 }
+
 var timeLeft = 60;
 function countDown() {
   var timeInterval = setInterval(function () {
-    if (timeLeft > 1) {
+    if (timeLeft > 1 && currentQuestionIndex < questionsArr.length) {
       timerEl.textContent = timeLeft + " seconds remaining";
       timeLeft--;
-    } else if (timeLeft === 1) {
+    } else if (timeLeft === 1 && currentQuestionIndex === questionsArr.length) {
       timerEl.textContent = timeLeft = "1 second remaining";
       timeLeft--;
     } else {
       timerEl.textContent = "Game Over";
+      questionElement.classList.add('hide');
       clearInterval(timeInterval);
-      startButton.classList.remove("hide")
-      questionContainerElement.classList.add("hide")
-      // location.reload();
+      endGame();
+      
+      // questionElement.textContent = "";
+      // answerButtonsElement.classList.add('hide'); 
+      // document.getElementById("final").classList.remove('hide'); 
+      // document.getElementById('score').innerHTML = timeLeft;
+      // timerEl.classList.add('hide');
+      
+      
+      // startButton.classList.remove("hide")
+      // questionContainerElement.classList.add("hide")
+      
    }
  }, 1000);
 }
@@ -113,16 +124,29 @@ function showQuestion() {
     for (i = 0; i < currentQuestion.answers.length; i++) {
       var currentAnswer = currentQuestion.answers[i];
       answerButtonsElement.children[i].textContent = currentAnswer.text;
+      
     }
-
+   
   } else {
-    questionElement.textContent = "Quiz Over";
-    answerButtonsElement.classList.add('hide'); 
-    document.getElementById("final").classList.remove('hide'); 
+    
+    endGame();
+    // questionElement.textContent = "";
+    // answerButtonsElement.classList.add('hide'); 
+    // document.getElementById("final").classList.remove('hide'); 
+    // document.getElementById('score').innerHTML = timeLeft;
+    // timerEl.classList.add('hide');
     
   }
-
 }
+
+function endGame(){
+  questionElement.textContent = "";
+    answerButtonsElement.classList.add('hide'); 
+    document.getElementById("final").classList.remove('hide'); 
+    document.getElementById('score').innerHTML = timeLeft;
+    timerEl.classList.add('hide');
+}
+
 
 answerButtonsElement.addEventListener("click", function (e) {
   console.log('clicked');
@@ -134,7 +158,11 @@ answerButtonsElement.addEventListener("click", function (e) {
   } else {
     console.log('wrong');
     document.getElementById("correct").innerHTML = 'wrong';
-    timeLeft -= 15;
+    if (timeLeft >= 15) {
+      timeLeft -= 15;
+    } else {
+      timeLeft = 0;
+    }
   }
 
   setTimeout(function () {
@@ -147,12 +175,22 @@ answerButtonsElement.addEventListener("click", function (e) {
 
 });
 
+document.getElementById('hs-btn').onclick = function() {
+document.getElementById('hs-div').classList.remove('hide');
+// document.getElementById('container').style.display ='none';
+var initials = localStorage.getItem("initials");
+var score = localStorage.getItem("score");
+console.log(initials, score);
+document.getElementById('myinitial').innerHTML = initials;
+document.getElementById('myscore').innerHTML = score;
+}
+
 document.getElementById("initial-btn").onclick = function (e) {
   e.preventDefault();
   var initials = document.getElementById("initials").value;
   localStorage.setItem("initials", initials);
   localStorage.setItem("score", timeLeft);
-  
+  // location.reload();
   }
 
 
